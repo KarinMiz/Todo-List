@@ -1,0 +1,32 @@
+.App{
+    height: 100vh;
+    padding: 0px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: start;
+    flex-direction: row;
+    
+}
+.delete{
+    margin-left: 20px;
+    width: fit-content;
+    height: fit-content;
+    border: border;
+    padding: 3px 6px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid rgb(254,191,191);
+    color: rgb(242,100,100);
+}
+
+.tasks{
+    gap: 10px;
+}
+
+.task{
+    flex:1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
