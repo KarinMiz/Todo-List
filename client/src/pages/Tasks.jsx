@@ -36,13 +36,13 @@ const Tasks = () => {
                     <div className="task" key={task.id}>
                         <Checkbox/>
                         <h2>{task.title}</h2>  
-                        <button className="delete" onClick={()=>handleDelete(task.id)}>Delete</button>
+                        {/* <button className="delete" onClick={()=>handleDelete(task.id)}>Delete</button> */}
                     </div>
                 ))}
             </div>
-            <button>
+            {/* <button>
                 <Link to="/add">Add new task</Link>
-            </button>
+            </button> */}
         </div>
     )
 }
