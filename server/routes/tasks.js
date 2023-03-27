@@ -13,9 +13,17 @@ router.get("/", async (req, res) => {
 
 router.post("/addTask", async (req, res) => {
   try {
-    const values = [req.body.id, req.body.title, req.body.status];
-    const add = await addTask(values);
-    res.send(add.rows);
+    const values = [
+      req.body.title, 
+      req.body.category_id, 
+      req.body.description,
+      req.body.isdone,
+      req.body.deadline
+    ];
+    console.log(values);
+    const newTask = await addTask(values);
+    res.send(newTask);
+    
     console.log("New task has been created successfully");
   } catch (error) {
     res.send(error);

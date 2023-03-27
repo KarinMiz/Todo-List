@@ -1,4 +1,10 @@
 
-// get categorie
+const getAllCategoriesQuery = "SELECT * FROM categories";
 
-// add?
+const getCategoryQuery = "SELECT * FROM categories WHERE category_id = $1"
+
+
+module.exports = {
+    getAllCategoriesQuery,
+    getCategoryQuery
+}
