@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllTasks, addTask, getTask } = require("../api/tasks");
+const { getAllTasks, addTask, getTask, getHistoryTasks } = require("../api/tasks");
 
 router.get("/", async (req, res) => {
   try {
@@ -10,6 +10,16 @@ router.get("/", async (req, res) => {
     res.send(error);
   }
 });
+
+router.get("/history", async (req, res) => {
+  try {
+    const history = await getHistoryTasks();
+    res.send(history.rows);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 
 router.post("/addTask", async (req, res) => {
   try {
@@ -40,6 +50,7 @@ router.get("/:id", async (req, res) => {
     res.send(error);
   }
 });
+
 
 // const app =  express();
 

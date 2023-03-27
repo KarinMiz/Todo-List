@@ -3,11 +3,16 @@ const {
   getAllTasksQuery,
   addTaskQuery,
   getTaskQuery,
+  getHistoryTasksQuery
 } = require("../queries/tasks");
 
 const getAllTasks = async () => {
   return await runQuery(getAllTasksQuery);
 };
+
+const getHistoryTasks = async ()=>{
+  return await runQuery(getHistoryTasksQuery);
+}
 
 const addTask = async (values) => {
   return await runQuery(addTaskQuery, [
@@ -23,4 +28,8 @@ const getTask = async (id) => {
   return await runQuery(getTaskQuery, [id]);
 };
 
-module.exports = { getAllTasks, addTask, getTask };
+module.exports = { 
+  getAllTasks, 
+  addTask, 
+  getTask, 
+  getHistoryTasks };
