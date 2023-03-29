@@ -20,7 +20,7 @@ const History = () => {
 
     return (
         <div>
-            <h1>My TODO List</h1>
+            <h1>History Tasks</h1>
             <div className="tasks">
                 {tasks.map(task => (
                     <div className="task" key={task.id}>

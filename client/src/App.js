@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import Tasks from "./pages/Tasks";
 import AddTask from "./pages/AddTask";
 import History from "./pages/History";
-import { Paper, TextField } from "@material-ui/core";
-import { Checkbox, Button } from "@material-ui/core";
 import "./App.css";
 import "./style.css";
 

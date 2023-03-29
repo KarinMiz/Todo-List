@@ -4,10 +4,23 @@ import axios from "axios";
 
 const AddTask = () => {
   const [task, setTask] = useState({
-    id: "",
     title: "",
-    status: "0",
+    category_id: "",
+    description: "",
+    isdone: "0",
+    deadline: ""
   });
+
+  const [category, setCategory] = useState([]);
+  useEffect(()=>{
+    const getcategory = async ()=>{
+      const res = await fetch("http://localhost:3001/categories");
+      const getData = await res.json();
+      setCategory(getData);
+      console.log(getData);
+    }
+    getcategory();
+  },[])
 
   const navigate = useNavigate();
 
@@ -44,12 +57,11 @@ const AddTask = () => {
       <div className="d-flex">
           Choose Category :
           <select>
-            <option value="Studies">Studies</option>
-            <option value="Work">Work</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Sport">Sport</option>
-            <option value="Social">Shopping</option>
-            <option value="Other">Other</option>
+            {
+              category.map((getcate)=>(
+                <option value={getcate.category_title}>{getcate.category_title}</option>
+              ))
+            }
           </select>
       </div>
       <div className="d-flex">

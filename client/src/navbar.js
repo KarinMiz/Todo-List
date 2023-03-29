@@ -3,11 +3,11 @@ import './navbar.css';
 export default function Navbar() {
   return (
     <nav className="nav">
-      <a className="site-title">
+      <h6 className="site-title">
         My Todo List
-      </a>
+      </h6>
       <ul>
-        <li className="active">
+        <li>
           <a href="/">Home</a>
         </li>
         <li>

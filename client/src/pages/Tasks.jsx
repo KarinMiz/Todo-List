@@ -1,11 +1,34 @@
 import { Checkbox } from '@material-ui/core';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import React, {useEffect, useState } from 'react';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([])
     const apiUrl = "http://localhost:3001/tasks";
+
+    const showDetails = (id)=>{
+        const fetchTask = async () => {
+            try {
+                const res = await axios.get(apiUrl+"/"+id);
+                console.log(res);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchTask();
+    }
+    const setStatus = (id)=>{
+        const fetchTask = async () => {
+            try {
+                // const res = await axios.get(`{$apiUrl}/{$id}`);
+                // console.log(res);
+                console.log("clicked");
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchTask();
+    }
 
     useEffect(() => {
         const fetchAllTasks = async () => {
@@ -19,30 +42,17 @@ const Tasks = () => {
         fetchAllTasks();
     }, [])
 
-    const handleDelete = async (id) =>{
-        try {
-            await axios.delete(`${apiUrl}/${id}`)
-            window.location.reload()
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return (
         <div>
-            <h1>My TODO List</h1>
+            <h1>Current Tasks:</h1>
             <div className="tasks">
                 {tasks.map(task => (
-                    <div className="task" key={task.id}>
-                        <Checkbox/>
-                        <h2>{task.title}</h2>  
-                        {/* <button className="delete" onClick={()=>handleDelete(task.id)}>Delete</button> */}
+                    <div className="task" key={task.id} >
+                        <Checkbox onChange={setStatus(task.id)}/>
+                        <h2 onClick={showDetails(task.id)}>{task.title}</h2>  
                     </div>
                 ))}
             </div>
-            {/* <button>
-                <Link to="/add">Add new task</Link>
-            </button> */}
         </div>
     )
 }
