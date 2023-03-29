@@ -34,6 +34,7 @@ const Tasks = () => {
         const fetchAllTasks = async () => {
             try {
                 const res = await axios.get(apiUrl);
+                console.log(res.data)
                 setTasks(res.data);
             } catch (err) {
                 console.log(err);

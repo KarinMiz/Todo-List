@@ -3,44 +3,57 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AddTask = () => {
-  const [task, setTask] = useState({
-    title: "",
-    category_id: "",
-    description: "",
-    isdone: "0",
-    deadline: ""
-  });
 
-  const [category, setCategory] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(()=>{
-    const getcategory = async ()=>{
+    const getcategories = async ()=>{
       const res = await fetch("http://localhost:3001/categories");
       const getData = await res.json();
-      setCategory(getData);
+      setCategories(getData);
       console.log(getData);
     }
-    getcategory();
+    getcategories();
   },[])
 
   const navigate = useNavigate();
 
   const apiUrl = "http://localhost:3001/tasks/addTask";
 
-  const handleChange = (e) => {
-    setTask((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.value);
   };
+
+  const handleChangeCategory = (e) => {
+    setCategory(e.target.value);
+  };
+  const handleChangeDescription = (e) => {
+    setDescription(e.target.value);
+  };
+  const handleChangeDeadline = (e) => {
+    setDeadline(e.target.value);
+  };
+
+  const [title, setTitle] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState();
+  const [deadline, setDeadline] = useState();
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(apiUrl, task);
+      const body = {
+        title: title,
+        category_id: category,
+        isdone: "false",
+        description: description,
+        deadline: deadline
+      }
+      await axios.post(apiUrl, body);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(task);
 
   return (
     <div className="form">
@@ -50,26 +63,35 @@ const AddTask = () => {
         <input
           type="text"
           placeholder="title"
-          onChange={handleChange}
+          onChange={handleChangeTitle}
           name="title"
         />
       </div>
       <div className="d-flex">
           Choose Category :
-          <select>
+          <select onChange={handleChangeCategory}>
             {
-              category.map((getcate)=>(
-                <option value={getcate.category_title}>{getcate.category_title}</option>
+              categories.map((getcate)=>(
+                <option value={getcate.category_id}>{getcate.category_title}</option>
               ))
             }
           </select>
       </div>
       <div className="d-flex">
-        Deadline : 
+        Description : 
         <input
           type="text"
+          placeholder="description"
+          onChange={handleChangeDescription}
+          name="title"
+        />
+      </div>
+      <div className="d-flex">
+        Deadline : 
+        <input
+          type="datetime-local"
           placeholder="deadline"
-          onChange={handleChange}
+          onChange={handleChangeDeadline}
           name="title"
         />
       </div>

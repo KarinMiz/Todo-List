@@ -3,7 +3,8 @@ const {
   getAllTasksQuery,
   addTaskQuery,
   getTaskQuery,
-  getHistoryTasksQuery
+  getHistoryTasksQuery,
+  updateStatusQuery
 } = require("../queries/tasks");
 
 const getAllTasks = async () => {
@@ -12,6 +13,10 @@ const getAllTasks = async () => {
 
 const getHistoryTasks = async ()=>{
   return await runQuery(getHistoryTasksQuery);
+}
+
+const updateStatus = async ()=>{
+  return await runQuery(updateStatusQuery);
 }
 
 const addTask = async (values) => {
@@ -33,4 +38,5 @@ module.exports = {
   getAllTasks, 
   addTask, 
   getTask, 
-  getHistoryTasks };
+  getHistoryTasks,
+  updateStatus };
