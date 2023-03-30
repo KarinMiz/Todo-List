@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Checkbox } from "@material-ui/core";
+import { Card, Checkbox } from "@material-ui/core";
 import axios from "axios";
+import "./Task.css";
 
-const TaskDetails = (props) => {
+const Task = (props) => {
   const [isShown, setIsShown] = useState(false);
+  
   const apiUrl = "http://localhost:3001/tasks";
   const setStatus = async (id) => {
     try {
@@ -16,22 +18,28 @@ const TaskDetails = (props) => {
 
   return (
     <div className="form">
-      <h1>Task's Details:</h1>
-      <div className="task" >
+      <Card>
+        <div className="taskline">
+          <Checkbox
+            className="cb"
+            checked={props.isdone}
+            onChange={() => setStatus(props.task_id)}
+          />
 
-        {isShown ? <div><div className="d-flex">Title : {props.title}</div>
-        <div className="d-flex">Choose Category :{props.category}</div>
-        <div className="d-flex">Description : {props.description}</div>
-        <div className="d-flex">Deadline : {props.deadline}</div></div>
-            : null}
-
-        <Checkbox
-          checked={props.isdone}
-          onChange={() => setStatus(props.task_id)}
-        />
-      </div>
+          <span onClick={() => setIsShown(!isShown)}>
+            {props.title}   
+          </span>
+        </div>
+        {isShown ? (
+          <div className="taskDetails">
+            <div className="taskField">Category :{props.category}</div>
+            <div className="taskField">Description : {props.description}</div>
+            <div className="taskField">Deadline : {props.deadline}</div>
+          </div>
+        ) : null}
+      </Card>
     </div>
   );
 };
 
-export default TaskDetails;
+export default Task;

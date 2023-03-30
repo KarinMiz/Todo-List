@@ -1,0 +1,26 @@
+.form{
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 13px;
+    border: 2px;
+    border-color: black;
+    flex-direction: row;
+}
+
+.h4{
+    margin: 0px;
+}
+
+.taskline{
+
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: row;
+}
+
+.taskDetails{
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
