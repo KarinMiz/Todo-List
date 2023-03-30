@@ -1,74 +1,58 @@
-import { Checkbox } from '@material-ui/core';
-import axios from 'axios';
-import React, {useEffect, useState } from 'react';
+import { Checkbox } from "@material-ui/core";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Task from "../components/Task";
 
 const Tasks = () => {
-    const [tasks, setTasks] = useState([])
-    const apiUrl = "http://localhost:3001/tasks";
+  const [tasks, setTasks] = useState([]);
+  const apiUrl = "http://localhost:3001/tasks";
 
-    const showDetails = (id)=>{
-        const fetchTask = async () => {
-            try {
-                const res = await axios.get(apiUrl+"/"+id);
-                console.log(res);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchTask();
+  const showDetails = async (id) => {
+    try {
+      const res = await axios.get(apiUrl + "/" + id);
+    } catch (err) {
+      console.log(err);
     }
-    const setStatus = (id)=>{
-        const fetchTask = async () => {
-            try {
-                // const res = await axios.get(`{$apiUrl}/{$id}`);
-                // console.log(res);
-                console.log("clicked");
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchTask();
-    }
+  };
 
-    useEffect(() => {
-        const fetchAllTasks = async () => {
-            try {
-                const res = await axios.get(apiUrl);
-                console.log(res.data)
-                setTasks(res.data);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchAllTasks();
-    }, [])
+  useEffect(() => {
+    const fetchAllTasks = async () => {
+      try {
+        const res = await axios.get(apiUrl);
+        console.log(res.data);
+        setTasks(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllTasks();
+  }, []);
 
-    return (
-        <div>
-            <h1>Current Tasks:</h1>
-            <div className="tasks">
-                {tasks.map(task => (
-                    <div className="task" key={task.id} >
-                        <Checkbox onChange={setStatus(task.id)}/>
-                        <h2 onClick={showDetails(task.id)}>{task.title}</h2>  
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-
-
+  return (
+    <div>
+      <h1>Current Tasks:</h1>
+      <div className="tasks">
+        {tasks.map((task) => (
+          <Task
+            id={task.task_id}
+            title={task.title}
+            category={task.category}
+            description={task.description}
+            deadline={task.deadline}
+            isdone={task.isdone}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Tasks;
 
-
-
 // import {
-//     addTask, 
-//     getTasks, 
-//     updateTask, 
+//     addTask,
+//     getTasks,
+//     updateTask,
 //     deleteTask
 // } from './services/taskServices';
 
@@ -80,7 +64,7 @@ export default Tasks;
 //            const {data} = await getTasks();
 //            this.setState({tasks: data});
 //         } catch (error) {
-//             console.log(error);     
+//             console.log(error);
 //         }
 //     }
 //     handleChange = ({currentTarget: input}) => {

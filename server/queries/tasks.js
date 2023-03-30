@@ -5,11 +5,11 @@ const addTaskQuery = "INSERT INTO tasks(title,category_id,description, isdone, d
 
 const getTaskQuery = "SELECT * FROM tasks WHERE task_id = $1"
 
-const getHistoryTasksQuery = "SELECT * FROM tasks WHERE (isDone=TRUE) OR (deadline<NOW()) ";
+const getHistoryTasksQuery = "SELECT * FROM tasks WHERE (isdone=TRUE) OR (deadline<NOW()) ";
 
-const finishTaskQuery = "UPDATE tasks SET isDone = true WHERE task_id = $1";
+const finishTaskQuery = "UPDATE tasks SET isdone = true WHERE task_id = $1";
 
-const restoreTaskQuery = "UPDATE tasks SET isDone = false WHERE task_id = $1";
+const restoreTaskQuery = "UPDATE tasks SET isdone = false WHERE task_id = $1";
 
 module.exports = {
     getAllTasksQuery, 

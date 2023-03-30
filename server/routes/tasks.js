@@ -5,7 +5,8 @@ const {
   addTask, 
   getTask, 
   getHistoryTasks,
-  updateStatus } = require("../api/tasks");
+  finishTask,
+  restoreTask} = require("../api/tasks");
 
 router.get("/", async (req, res) => {
   try {
@@ -55,11 +56,24 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/updateStatus/:id", async (req, res) => {
+router.put("/finishTask/:id", async (req, res) => {
   try {
     const id = req.params.id;
 
-    const task = await updateStatus(id);
+    const task = await finishTask(id);
+    res.send(task.rows);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.put("/restoreTask/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    console.log(id)
+    
+    const task = await restoreTask(id);
     res.send(task.rows);
   } catch (error) {
     res.send(error);

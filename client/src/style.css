@@ -32,4 +32,13 @@
 
 .form{
     flex:2;
+    font-size:35px;
+}
+
+.pass{
+    flex:1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: red;
 }

@@ -14,8 +14,12 @@ export function addTask(task){
     return axios.post(`${apiUrl}/addTask`, task);
 }
 
-export function updateStatus(task){
-    return axios.post(`${apiUrl}/updateStatus/${id}`);
+export function restoreTask(id){
+    return axios.put(`${apiUrl}/restoreTask/${id}`);
+}
+
+export function finishTask(id){
+    return axios.put(`${apiUrl}/finishTask/${id}`);
 }
 
 export function getTask(id, task){
