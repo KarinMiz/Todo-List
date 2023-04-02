@@ -10,24 +10,20 @@ const Tasks = () => {
   useEffect(() => {
     const fetchAllTasks = async () => {
       try {
-        const res = await axios.get(apiUrl);
-        console.log(res.data);
+        const res = await axios.get(apiUrl);;
         setTasks(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchAllTasks();
-  }, [Task]);
+  }, [tasks]);
 
-  // const removeTask = async (id) => {
-  //   var newState = [...tasks]; // make a separate copy of the array
-  //   var index = newState.find(id)
-  //   if (index !== -1) {
-  //     array.splice(index, 1);
-  //     this.setState({people: array});
-  //   }
-  // };
+  const removeTask = async (id) => {
+    const apiUrl = "http://localhost:3001/tasks";
+    const res = await axios.put(`${apiUrl}/finishTask/${id}`);
+    tasks.filter((task) => task.id !== id) 
+  };
 
   return (
     <div>
@@ -41,6 +37,7 @@ const Tasks = () => {
             description={task.description}
             deadline={task.deadline}
             isdone={task.isdone}
+            action={removeTask}
           />
         ))}
       </div>

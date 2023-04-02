@@ -1,42 +1,47 @@
-import { Checkbox, styled } from "@material-ui/core";
+import { Card, Checkbox } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { getTask } from "../services/taskServices";
 import "../style.css";
+import "../components/Task.css";
+import Task from "../components/Task";
 
 const History = () => {
   const [tasks, setTasks] = useState([]);
-  const apiUrl = "http://localhost:3001/tasks/history";
 
-  const handleChange = async (id) => {
-      try {
-          const res = await axios.put(`${apiUrl}/restoreTask/${id}`);
-          console.log(res);
-      } catch (err) {
-          console.log(err);
-      }
+  const apiUrl = "http://localhost:3001/tasks";
+
+  const reAddTask = async (id) => {
+    const res = await axios.put(`${apiUrl}/restoreTask/${id}`);
+    getTask(id);
   };
 
   useEffect(() => {
     const fetchAllTasks = async () => {
       try {
-        const res = await axios.get(apiUrl);
+        const res = await axios.get(`${apiUrl}/history`);
         setTasks(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchAllTasks();
-  }, [handleChange]);
+  }, [tasks]);
 
   return (
     <div>
       <h1>History Tasks</h1>
       <div className="tasks">
         {tasks.map((task) => (
-          <div className={(task.isdone)&&(task.deadline <= Date())? "task" : "pass"} key={task.task_id}>
-            <Checkbox checked={task.isdone} onChange={() => handleChange(task.task_id)} />
-            <h2>{task.title}</h2>
-          </div>
+          <Task
+            id={task.task_id}
+            title={task.title}
+            category={task.category}
+            description={task.description}
+            deadline={task.deadline}
+            isdone={task.isdone}
+            action={reAddTask}
+          />
         ))}
       </div>
     </div>

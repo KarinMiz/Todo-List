@@ -4,7 +4,8 @@
     margin-bottom: 13px;
     border: 2px;
     border-color: black;
-    flex-direction: row;
+    /* flex-direction: row; */
+    
 }
 
 .h4{
@@ -12,15 +13,30 @@
 }
 
 .taskline{
-
+    font-size: 20px;
     margin-left: 10px;
     margin-right: 10px;
-    flex-direction: row;
 }
 
 .taskDetails{
+    font-size: 20px;
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;
 }
 
+.task{
+    flex:1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: white;
+}
+
+.pass{
+    flex:1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: red;
+}
