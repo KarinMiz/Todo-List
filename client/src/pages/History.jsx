@@ -5,6 +5,7 @@ import { getTask } from "../services/taskServices";
 import "../style.css";
 import "../components/Task.css";
 import Task from "../components/Task";
+import UpdateTask from "./UpdateTask";
 
 const History = () => {
   const [tasks, setTasks] = useState([]);
@@ -12,35 +13,38 @@ const History = () => {
   const apiUrl = "http://localhost:3001/tasks";
 
   const reAddTask = async (id) => {
-    const res = await axios.put(`${apiUrl}/restoreTask/${id}`);
-    getTask(id);
+    await axios.put(`${apiUrl}/restoreTask/${id}`);
+    setTasks([...tasks].filter((task) => task.task_id !== id));
+  };
+
+  const fetchAllTasks = async () => {
+    try {
+      const res = await axios.get(`${apiUrl}/history`);
+      setTasks(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    const fetchAllTasks = async () => {
-      try {
-        const res = await axios.get(`${apiUrl}/history`);
-        setTasks(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchAllTasks();
-  }, [tasks]);
+  }, []);
 
   return (
     <div>
       <h1>History Tasks</h1>
       <div className="tasks">
-        {tasks.map((task) => (
+        {tasks
+        .sort((t1 , t2)=> t1.deadline > t2.deadline ? 1 : -1)
+        .map((task) => (
           <Task
             id={task.task_id}
             title={task.title}
-            category={task.category}
+            category={task.category_id}
             description={task.description}
             deadline={task.deadline}
             isdone={task.isdone}
-            action={reAddTask}
+            action={() => reAddTask(task.task_id)}
           />
         ))}
       </div>

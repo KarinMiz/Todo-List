@@ -7,6 +7,7 @@ import "./style.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./navbar";
+import UpdateTask from "./pages/UpdateTask";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Tasks />} />
             <Route path="/add" element={<AddTask />} />
             <Route path="/history" element={<History />} />
+            <Route path="/update" element={<UpdateTask />} />
           </Routes>
         </BrowserRouter>
       </div>
