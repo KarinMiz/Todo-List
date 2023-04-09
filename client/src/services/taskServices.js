@@ -22,6 +22,6 @@ export function finishTask(id){
     return axios.put(`${apiUrl}/finishTask/${id}`);
 }
 
-export function getTask(id, task){
+export function getTask(id){
     return axios.get(`${apiUrl}/${id}`);
 }

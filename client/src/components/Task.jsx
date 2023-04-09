@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Card, Checkbox } from "@material-ui/core";
-import { getCategory } from "../services/categorieServices";
+import React, {useState, useEffect} from "react";
+import {Card, Checkbox} from "@material-ui/core";
+import categoryColors, {getCategory} from "../services/categorieServices";
+import Edit from "../pages/Edit";
 import "./Task.css";
 
 const Task = (props) => {
@@ -11,6 +12,16 @@ const Task = (props) => {
   const setStatus = async (id) => {
     try {
       props.action();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEditTask = async () => {
+    try {
+      // const history = useHistory();
+      // history.push(`/edit/${props.category}`);
+      window.location.replace(`http://localhost:3000/edit?id=${props.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +42,12 @@ const Task = (props) => {
 
   return (
     <div className="form">
-      <Card>
+      <Card
+        style={{
+          backgroundColor:
+            categoryColors[props.category % categoryColors.length],
+        }}
+      >
         <div className="taskline">
           <Checkbox
             className="cb"
@@ -58,6 +74,12 @@ const Task = (props) => {
             <div className="taskField">Deadline : {props.deadline}</div>
           </div>
         ) : null}
+        <button
+          className="edit-btn"
+          onClick={handleEditTask}
+        >
+          Edit
+        </button>
       </Card>
     </div>
   );

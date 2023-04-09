@@ -2,16 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const UpdateTask = (props) => {
+const Edit = (props) => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const [title, setTitle] = useState();
+  const [category, setCategory] = useState();
+  const [description, setDescription] = useState();
+  const [deadline, setDeadline] = useState();
 
+  
   const [categories, setCategories] = useState([]);
+  const getTask = async ()=>{
+    const res = await fetch(`http://localhost:3001/tasks/${id}`);
+    const getData = await res.json();
+    setTitle(getData[0].title);
+    setCategory(getData[0].category_id)
+    setDescription(getData[0].description)
+    setDeadline(getData[0].deadline)
+  }
+  const getcategories = async ()=>{
+    const res = await fetch("http://localhost:3001/categories");
+    const getData = await res.json();
+    setCategories(getData);
+  }
   useEffect(()=>{
-    const getcategories = async ()=>{
-      const res = await fetch("http://localhost:3001/categories");
-      const getData = await res.json();
-      setCategories(getData);
-      console.log(getData);
-    }
+    getTask();
     getcategories();
   },[])
 
@@ -33,10 +48,7 @@ const UpdateTask = (props) => {
     setDeadline(e.target.value);
   };
 
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState();
-  const [description, setDescription] = useState();
-  const [deadline, setDeadline] = useState();
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -62,7 +74,7 @@ const UpdateTask = (props) => {
       Title : 
         <input
           type="text"
-          value={props.title}
+          defaultValue={title}
           onChange={handleChangeTitle}
           name="title"
         />
@@ -81,7 +93,7 @@ const UpdateTask = (props) => {
         Description : 
         <input
           type="text"
-          value={props.description}
+          defaultValue={description}
           onChange={handleChangeDescription}
           name="title"
         />
@@ -90,7 +102,7 @@ const UpdateTask = (props) => {
         Deadline : 
         <input
           type="datetime-local"
-          value={props.deadline}
+          defaultValue={deadline}
           onChange={handleChangeDeadline}
           name="title"
         />
@@ -101,4 +113,4 @@ const UpdateTask = (props) => {
   );
 };
 
-export default UpdateTask;
+export default Edit;

@@ -1,5 +1,4 @@
-import { Icon } from "@material-ui/core";
-import React, { Fragment, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import "./Filter.css";
 
 const Filter = (props) => {

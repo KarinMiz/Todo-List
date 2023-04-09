@@ -23,14 +23,16 @@
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;
+    color: white;
 }
 
 .task{
+    font-weight: bold;
+    color: white;
     flex:1;
     display: flex;
     gap: 10px;
     align-items: center;
-    background-color: white;
 }
 
 .pass{
@@ -39,4 +41,9 @@
     gap: 10px;
     align-items: center;
     background-color: red;
+}
+
+.edit-btn{
+    background-color: white;
+    color: black;
 }

@@ -1,11 +1,8 @@
-import { Card, Checkbox } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { getTask } from "../services/taskServices";
 import "../style.css";
 import "../components/Task.css";
 import Task from "../components/Task";
-import UpdateTask from "./UpdateTask";
 
 const History = () => {
   const [tasks, setTasks] = useState([]);

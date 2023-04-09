@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import categoryColors from "../services/categorieServices";
 
 const AddTask = () => {
 
@@ -70,9 +71,13 @@ const AddTask = () => {
       <div className="d-flex">
           Choose Category :
           <select onChange={handleChangeCategory}>
+          <option value={null}>Select Category</option>
             {
               categories.map((getcate)=>(
-                <option value={getcate.category_id}>{getcate.category_title}</option>
+                <option 
+                value={getcate.category_id}
+                style={{ background: categoryColors[getcate.category_id % categoryColors.length] }}
+                >{getcate.category_title}</option>
               ))
             }
           </select>
