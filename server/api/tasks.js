@@ -32,6 +32,7 @@ const updateTask = async (values)=>{
     values[2],
     values[3],
     values[4],
+    values[5]
   ]);
 }
 

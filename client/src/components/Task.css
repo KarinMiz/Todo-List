@@ -23,19 +23,20 @@
     flex-direction: column;
     margin-left: 10px;
     margin-right: 10px;
-    color: white;
 }
 
 .task{
     font-weight: bold;
-    color: white;
     flex:1;
     display: flex;
     gap: 10px;
     align-items: center;
+    text-decoration: underline;
 }
 
 .pass{
+    text-decoration: underline;
+    font-weight: bold;
     flex:1;
     display: flex;
     gap: 10px;

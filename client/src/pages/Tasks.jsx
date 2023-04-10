@@ -6,6 +6,7 @@ import Task from "../components/Task";
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [filterVal, setfilterVal] = useState(0);
+  
   const apiUrl = "http://localhost:3001/tasks";
 
   const removeTask = async (id) => {
@@ -16,12 +17,8 @@ const Tasks = () => {
   const fetchAllTasks = async () => {
     try {
       const res = await axios.get(apiUrl);
-      console.log(res.data, "fetchalltasks");
 
       if (filterVal > 0) {
-        console.log(
-          res.data.filter((task) => +task.category_id === +filterVal)
-        );
         setTasks(res.data.filter((task) => +task.category_id === +filterVal));
       } else {
         setTasks(res.data);

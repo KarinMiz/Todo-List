@@ -11,7 +11,6 @@ const AddTask = () => {
       const res = await fetch("http://localhost:3001/categories");
       const getData = await res.json();
       setCategories(getData);
-      console.log(getData);
     }
     getcategories();
   },[])

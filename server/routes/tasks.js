@@ -36,7 +36,7 @@ router.post("/addTask", async (req, res) => {
       req.body.isdone,
       req.body.deadline
     ];
-    console.log(values);
+
     const newTask = await addTask(values);
     res.send(newTask);
     
@@ -46,16 +46,18 @@ router.post("/addTask", async (req, res) => {
   }
 });
 
-router.post("/updateTask", async (req, res) => {
+router.put("/updateTask/:id", async (req, res) => {
   try {
     const values = [
       req.body.title, 
       req.body.category_id, 
       req.body.description,
       req.body.isdone,
-      req.body.deadline
+      req.body.deadline,
+      req.params.id
     ];
-    const newTask = await addTask(values);
+    const newTask = await updateTask(values);
+    console.log(newTask);
     res.send(newTask);
     
     console.log(`Task ${req.body.title} has been updated successfully`);
@@ -89,8 +91,6 @@ router.put("/finishTask/:id", async (req, res) => {
 router.put("/restoreTask/:id", async (req, res) => {
   try {
     const id = req.params.id;
-
-    console.log(id)
     
     const task = await restoreTask(id);
     res.send(task.rows);
@@ -98,50 +98,5 @@ router.put("/restoreTask/:id", async (req, res) => {
     res.send(error);
   }
 });
-
-
-// const app =  express();
-
-// router.get("/test", addTask)
-
-// router.post("/", async (req,res)=>{
-//     try{
-//         const task = await new Task(req.body).save();
-//         res.send(task);
-//     }catch(error){
-//         res.send(error);
-//     }
-// })
-
-// router.get("/", async(req,res)=>{
-//     console.log("here")
-//     try {
-//         const task = await Task.find();
-//         res.send(task);
-//     } catch (error) {
-//         res.send(error);
-//     }
-// })
-
-// router.put("/:id",async (req,res) => {
-//     try {
-//         const task = await Task.findOneAndUpdate(
-//             {_id: req.params.id},
-//             req.body
-//         )
-//         res.send(task)
-//     } catch (error) {
-//         res.send(error)
-//     }
-// })
-
-// router.delete("/:id", async (req, res) =>{
-//     try {
-//         const task = await Task.findByIdAndDelete(req.params.id);
-//         res.send(task);
-//     } catch (error) {
-//         res.send(error);
-//     }
-// })
 
 module.exports = router;
