@@ -44,6 +44,11 @@ body{
     font-size: 25px;
 }
 
+.navbar li.selected {
+    background-color: #f0f0f0;
+}
+  
+
 .nav li.active{
     background-color: #555;
 }
