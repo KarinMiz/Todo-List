@@ -57,7 +57,6 @@ router.put("/updateTask/:id", async (req, res) => {
       req.params.id
     ];
     const newTask = await updateTask(values);
-    console.log(newTask);
     res.send(newTask);
     
     console.log(`Task ${req.body.title} has been updated successfully`);

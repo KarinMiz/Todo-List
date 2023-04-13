@@ -5,7 +5,6 @@ import History from "./pages/History";
 import Edit from "./pages/Edit";
 import Navbar from "./navbar";
 import "./App.css";
-import "./style.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

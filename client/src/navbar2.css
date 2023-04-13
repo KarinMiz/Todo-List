@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+:root{
+    --mainColor: #29335C;
+    --mainColorLight: #5767aa;
+    --secondaryColor: #DB2B39;
+    --textColor: #eee;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 2rem;
+    background-color: var(--mainColor);
+    color: var(--textColor);
+}
+
+nav a{
+    margin: 0 2rem;
+    
+}
