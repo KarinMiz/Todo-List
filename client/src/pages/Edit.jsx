@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Edit.css";
 
 const Edit = (props) => {
   const params = new URLSearchParams(window.location.search);
@@ -71,8 +72,8 @@ const Edit = (props) => {
   };
 
   return (
-    <div className="form">
-      <h1>Update Task before re-add</h1>
+    <div className="form-edit">
+      <div className="title-edit">Update Task before re-add</div>
       <div className="d-flex">
       Title : 
         <input

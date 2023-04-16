@@ -3,7 +3,7 @@ import Tasks from "./pages/Tasks";
 import AddTask from "./pages/AddTask";
 import History from "./pages/History";
 import Edit from "./pages/Edit";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";

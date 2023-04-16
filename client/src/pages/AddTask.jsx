@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import categoryColors from "../services/categorieServices";
+import "./AddTask.css";
 
 const AddTask = () => {
   const currentDate = new Date().toISOString().slice(0, 16);
@@ -58,8 +59,8 @@ const AddTask = () => {
   };
 
   return (
-    <div className="form">
-      <h1>Add New Task</h1>
+    <div className="form-add">
+      <div className="title-add">Add New Task</div>
       <div className="d-flex">
         Title :
         <input
