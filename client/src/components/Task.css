@@ -1,45 +1,35 @@
 .form{
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 13px;
     border: 2px;
     border-color: black;
-}
-
-.h4{
-    margin: 0px;
+    display: flex;
 }
 
 .taskline{
     font-size: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 .taskDetails{
     font-size: 20px;
-    flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
+    text-align: left;
+    padding-left: 10px;
 }
 
 .task{
     font-weight: bold;
-    flex:1;
     display: flex;
-    gap: 10px;
-    align-items: center;
+    width: 300px;
     text-decoration: underline;
+    text-align: left;
 }
 
 .pass{
-    text-decoration: underline;
     font-weight: bold;
+    width: 300px;
     flex:1;
     display: flex;
-    gap: 10px;
-    align-items: center;
-    background-color: red;
+    align-items: start;
+    text-decoration: underline;
+    background-color: crimson;
 }
 
 .edit-btn{

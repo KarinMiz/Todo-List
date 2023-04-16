@@ -32,10 +32,7 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchAllTasks();
-
-    // if (filterVal !== 0) {
-    //   setTask([...tasks].filter((task) => task.category_id === filterVal));
-    // }
+    
   }, [filterVal]);
 
   const onFilterValueSelected = (filterValue) => {

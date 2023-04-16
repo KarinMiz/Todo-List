@@ -1,38 +1,32 @@
 .App{
     height: 100vh;
-    padding: 0px 100px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-align: start;
-    /* flex-direction: column; */
-}
-.delete{
-    margin-left: 20px;
-    width: fit-content;
-    height: fit-content;
-    border: border;
-    padding: 3px 6px;
-    background-color: white;
-    cursor: pointer;
-    border: 1px solid rgb(254,191,191);
-    color: rgb(242,100,100);
+    text-align: center;
 }
 
 .tasks{
-    gap: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    align-content: start;
+    width: max-content;
+    height: max-content;
 }
 
 .task{
     flex:1;
     display: flex;
-    gap: 10px;
-    align-items: center;
+    align-items: start;
+    align-content: start;
 }
 
 .form{
     flex:2;
     font-size:35px;
+
 }
 
 .pass{
@@ -40,5 +34,5 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    background-color: red;
+    background-color: crimson;
 }

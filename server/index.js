@@ -17,30 +17,5 @@ app.get("/", (req,res)=>{
 
 
 
-// app.post("/tasks",(req,res)=>{
-//     const q = "INSERT INTO tasks (`id`,`title`,`status`) VALUES (?)"
-//     const values = 
-//         [
-//             req.body.id,
-//             req.body.title,
-//             req.body.status
-//         ]
-
-//     db.query(q,[values],(err,data)=>{
-//         if(err) return res.json(err)
-//             return res.json("New task has been created successfully")
-//     })
-// })
-
-// app.delete("/tasks/:id",(req,res)=>{
-//     const taskId = req.params.id;
-//     const q = "DELETE FROM tasks WHERE id = ?"
-//     db.query(q,[taskId], (err, data)=>{
-//         if(err) return res.json(err)
-//             return res.json("New task has been deleted successfully")
-//     })
-// })
-
-// const port = process.env.PORT || 8080;
 const port = process.env.PORT || 3001;
 app.listen(port,() => console.log(`Listening on port ${port}...`));

@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
-import {Card, Checkbox} from "@material-ui/core";
-import categoryColors, {getCategory} from "../services/categorieServices";
+import React, { useState, useEffect } from "react";
+import { Card, Checkbox } from "@material-ui/core";
+import categoryColors, { getCategory } from "../services/categorieServices";
 import "./Task.css";
 
 const Task = (props) => {
@@ -79,24 +79,25 @@ const Task = (props) => {
       <Card
         style={
           props.isdone
-            ? {backgroundColor: "white", color: "black"}
+            ? { backgroundColor: "white", color: "black" }
             : new Date(props.deadline) > new Date()
             ? {
                 backgroundColor:
                   categoryColors[props.category % categoryColors.length],
                 color: "black",
               }
-            : {backgroundColor: "red", color: "black"}
+            : { backgroundColor: "crimson", color: "black" }
         }
       >
         <div className="taskline">
-          <Checkbox
-            className="cb"
-            checked={props.isdone}
-            onChange={() => setStatus(props.id)}
-            disabled={new Date(props.deadline) > new Date() ? false : true}
-          />
-
+          <div>
+            <Checkbox
+              className="cb"
+              checked={props.isdone}
+              onChange={() => setStatus(props.id)}
+              disabled={new Date(props.deadline) > new Date() ? false : true}
+            />
+          </div>
           <span
             className={
               !props.isdone && new Date(props.deadline) < new Date()
@@ -107,21 +108,21 @@ const Task = (props) => {
           >
             {props.title}
           </span>
-          {(remainingTime != null)
-          &&(new Date(props.deadline) > new Date()) 
-          && (!props.isdone) 
-          && (
-            <div>
-              Left Time :
-              {remainingTime.days > 0 && `${remainingTime.days} days, `}
-              {remainingTime.hours > 0 && `${remainingTime.hours} hours, `}
-              {remainingTime.minutes > 0 && `${remainingTime.minutes} minutes `}
-              {remainingTime.days === 0 &&
-                remainingTime.hours === 0 &&
-                remainingTime.minutes === 0 &&
-                `${remainingTime.seconds} seconds`}
-            </div>
-          )}
+          {remainingTime != null &&
+            new Date(props.deadline) > new Date() &&
+            !props.isdone && (
+              <div>
+                Left Time - 
+                {remainingTime.days > 0 && ` ${remainingTime.days}d:`}
+                {remainingTime.hours > 0 && `${remainingTime.hours}h:`}
+                {remainingTime.minutes > 0 &&`${remainingTime.minutes}m:`}
+                {remainingTime.seconds > 0 &&`${remainingTime.seconds}s`}
+                {remainingTime.days === 0 &&
+                  remainingTime.hours === 0 &&
+                  remainingTime.minutes === 0 &&
+                  `${remainingTime.seconds}s`}
+              </div>
+            )}
         </div>
         {isShown ? (
           <div className="taskDetails">
