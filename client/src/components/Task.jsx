@@ -7,6 +7,7 @@ const Task = (props) => {
   const [isShown, setIsShown] = useState(false);
   const [categoryName, setCategoryName] = useState("");
   const [remainingTime, setRemainingTime] = useState(null);
+  
   const calculateRemainingTime = () => {
     const now = new Date();
     const deadline = new Date(props.deadline);
@@ -75,7 +76,7 @@ const Task = (props) => {
   });
 
   return (
-    <div className="form">
+    <div className="form-task">
       <Card
         style={
           props.isdone
@@ -89,7 +90,7 @@ const Task = (props) => {
             : { backgroundColor: "crimson", color: "black" }
         }
       >
-        <div className="taskline">
+        <div className="taskline-task">
           <div>
             <Checkbox
               className="cb"
@@ -111,7 +112,7 @@ const Task = (props) => {
           {remainingTime != null &&
             new Date(props.deadline) > new Date() &&
             !props.isdone && (
-              <div>
+              <div className="left-time">
                 Left Time - 
                 {remainingTime.days > 0 && ` ${remainingTime.days}d:`}
                 {remainingTime.hours > 0 && `${remainingTime.hours}h:`}
@@ -125,7 +126,7 @@ const Task = (props) => {
             )}
         </div>
         {isShown ? (
-          <div className="taskDetails">
+          <div className="taskDetails-task">
             <div className="taskField">Category : {categoryName}</div>
             <div className="taskField">Description : {props.description}</div>
             <div className="taskField">{formattedDeadline}</div>

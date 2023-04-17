@@ -1,17 +1,17 @@
-.form{
+.form-task{
     border: 2px;
     border-color: black;
     display: flex;
 }
 
-.taskline{
+.taskline-task{
     font-size: 20px;
 }
 
-.taskDetails{
+.taskDetails-task{
     font-size: 20px;
     text-align: left;
-    padding-left: 10px;
+    padding: 10px;
 }
 
 .task{
@@ -20,19 +20,28 @@
     width: 300px;
     text-decoration: underline;
     text-align: left;
+    padding-bottom: 5px;
+}
+
+.left-time{
+    text-align: left;
+    padding-left: 10px;
 }
 
 .pass{
     font-weight: bold;
+    padding-bottom: 5px;
     width: 300px;
     flex:1;
     display: flex;
     align-items: start;
     text-decoration: underline;
     background-color: crimson;
+    padding-left: 10px;
 }
 
 .edit-btn{
     background-color: white;
     color: black;
+    margin-top: 8px;
 }

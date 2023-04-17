@@ -1,24 +1,34 @@
 .form-add {
-
+  padding-top: 50px;
+  text-align: left;
 }
 
 .title-add {
-  font-size: 60px;
+  font-size: 30px;
   text-decoration: underline;
   margin-bottom: 20px;
 }
 
-.d-flex {
-  font-size: 40px;
-  display:flex;
-  align-items: center;
+.fields {
+  font-size: 25px;
 }
 
-.d-flex input {
-  font-size: 16px;
+.input-field {
+  padding-bottom: 10px;
 }
 
-.d-flex select {
+.fields input {
+  height: 30px;
   font-size: 16px;
+  padding-left: 8px;
+  margin-left: 8px;
+}
+
+.fields select {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  padding-left: 8px;
+  margin-left: 8px;
 }
 

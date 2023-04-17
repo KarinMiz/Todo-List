@@ -5,7 +5,7 @@ const Filter = (props) => {
   const [categories, setCategories] = useState([]);
 
   const getcategories = async () => {
-    const res = await fetch("http://localhost:3001/categories");
+    const res = await fetch("http://localhost:3001/categories"); // try catch
     const getData = await res.json();
     setCategories(getData);
   };
@@ -20,11 +20,11 @@ const Filter = (props) => {
 
   return (
     <div className="filter-area">
-      <select name="isAvaliavle" onChange={onFilterValueChanged}>
+      <select onChange={onFilterValueChanged}>
         <option value={0}>Categories</option>
             {
               categories.map((getcate)=>(
-                <option value={+getcate.category_id}>{getcate.category_title}</option>
+                <option value={getcate.category_id} key={getcate.category_id}>{getcate.category_title}</option>
               ))
             }
       </select>

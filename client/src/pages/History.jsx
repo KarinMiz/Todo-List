@@ -35,6 +35,7 @@ const History = () => {
         .sort((t1 , t2)=> t1.deadline > t2.deadline ? 1 : -1)
         .map((task) => (
           <Task
+            key={task.task_id}
             id={task.task_id}
             title={task.title}
             category={task.category_id}

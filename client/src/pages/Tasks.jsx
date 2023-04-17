@@ -6,12 +6,17 @@ import Task from "../components/Task";
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
   const [filterVal, setfilterVal] = useState(0);
-  
+
   const apiUrl = "http://localhost:3001/tasks";
 
   const removeTask = async (id) => {
-    await axios.put(`${apiUrl}/finishTask/${id}`);
-    setTasks([...tasks].filter((task) => task.task_id !== id));
+    try {
+      await axios.put(`${apiUrl}/finishTask/${id}`);
+      setTasks([...tasks].filter((task) => task.task_id !== id));
+    } catch (error) {
+      console.log("error removing task");
+    }
+
   };
 
   const fetchAllTasks = async () => {
@@ -19,7 +24,7 @@ const Tasks = () => {
       const res = await axios.get(apiUrl);
 
       if (filterVal > 0) {
-        setTasks(res.data.filter((task) => +task.category_id === +filterVal));
+        setTasks(res.data.filter((task) => task.category_id === filterVal));
       } else {
         setTasks(res.data);
       }
@@ -32,7 +37,6 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchAllTasks();
-    
   }, [filterVal]);
 
   const onFilterValueSelected = (filterValue) => {
@@ -49,6 +53,7 @@ const Tasks = () => {
             .sort((t1, t2) => (t1.deadline > t2.deadline ? 1 : -1))
             .map((task) => (
               <Task
+                key={task.task_id}
                 id={task.task_id}
                 title={task.title}
                 category={task.category_id}

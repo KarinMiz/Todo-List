@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import categoryColors from "../services/categorieServices";
 import "./AddTask.css";
@@ -61,55 +61,57 @@ const AddTask = () => {
   return (
     <div className="form-add">
       <div className="title-add">Add New Task</div>
-      <div className="d-flex">
-        Title :
-        <input
-          type="text"
-          placeholder="title"
-          onChange={handleChangeTitle}
-          name="title"
-          required
-        />
+      <div className="fields">
+        <div className="input-field">
+          Title :
+          <input
+            type="text"
+            placeholder="title"
+            onChange={handleChangeTitle}
+            name="title"
+            required
+          />
+        </div>
+        <div className="input-field">
+          Choose Category :
+          <select onChange={handleChangeCategory}>
+            <option value={null}>Select Category</option>
+            {categories.map((getcate) => (
+              <option
+                value={getcate.category_id}
+                key={getcate.category_id}
+                style={{
+                  background:
+                    categoryColors[getcate.category_id % categoryColors.length],
+                }}
+              >
+                {getcate.category_title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-field">
+          Description :
+          <input
+            type="text"
+            placeholder="description"
+            onChange={handleChangeDescription}
+            name="title"
+            required
+          />
+        </div>
+        <div className="input-field">
+          Deadline :
+          <input
+            type="datetime-local"
+            placeholder="deadline"
+            min={currentDate}
+            onChange={handleChangeDeadline}
+            name="title"
+            required
+          />
+        </div>
       </div>
-      <div className="d-flex">
-        Choose Category :
-        <select onChange={handleChangeCategory}>
-          <option value={null}>Select Category</option>
-          {categories.map((getcate) => (
-            <option
-              value={getcate.category_id}
-              style={{
-                background:
-                  categoryColors[getcate.category_id % categoryColors.length],
-              }}
-            >
-              {getcate.category_title}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="d-flex">
-        Description :
-        <input
-          type="text"
-          placeholder="description"
-          onChange={handleChangeDescription}
-          name="title"
-          required
-        />
-      </div>
-      <div className="d-flex">
-        Deadline :
-        <input
-          type="datetime-local"
-          placeholder="deadline"
-          min={currentDate}
-          onChange={handleChangeDeadline}
-          name="title"
-          required
-        />
-      </div>
-
       <button onClick={handleClick}>Add</button>
     </div>
   );

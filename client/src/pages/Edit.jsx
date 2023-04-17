@@ -11,7 +11,7 @@ const Edit = (props) => {
   const [isDone, setIsDone] = useState();
   const [description, setDescription] = useState();
   const [deadline, setDeadline] = useState();
-
+  const currentDate = new Date().toISOString().slice(0, 16);
   
   const [categories, setCategories] = useState([]);
   const getTask = async ()=>{
@@ -75,7 +75,7 @@ const Edit = (props) => {
     <div className="form-edit">
       <div className="title-edit">Update Task before re-add</div>
       <div className="d-flex">
-      Title : 
+      Title :  
         <input
           type="text"
           defaultValue={title}
@@ -88,7 +88,7 @@ const Edit = (props) => {
           <select value={category} onChange={handleChangeCategory} >
             {
               categories.map((getcate)=>(
-                <option value={getcate.category_id}>{getcate.category_title}</option>
+                <option value={getcate.category_id} key={getcate.category_id}>{getcate.category_title}</option>
               ))
             }
           </select>
@@ -108,6 +108,7 @@ const Edit = (props) => {
           type="datetime-local"
           defaultValue={deadline ? deadline.slice(0, -1) : ""}
           onChange={handleChangeDeadline}
+          min={currentDate}
           name="title"
         />
       </div>
